@@ -1,0 +1,26 @@
+
+.loader{
+    display: block;
+    margin:auto;
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px  #437EF7 dashed;
+    animation-name: loader;
+    animation-duration: 4s;
+}
+
+@keyframes loader{
+    0%{
+        transform: rotate(0deg);
+        border: 2px  #437EF7 dashed;
+    }
+    50%{
+        transform: rotate(180deg);
+        border: 2px  #26498e dashed;
+    }
+    100%{
+        transform: rotate(360deg);
+        border: 2px  #437EF7 dashed;
+    }
+}

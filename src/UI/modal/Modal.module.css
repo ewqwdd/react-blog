@@ -1,0 +1,18 @@
+.Modal{
+    height:100%;
+    width:100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.341);
+}
+
+.frame{
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    display: inline-block;
+    border-radius:12px;
+    padding:20px 40px;
+    background: whitesmoke;
+}

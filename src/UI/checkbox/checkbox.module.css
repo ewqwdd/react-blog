@@ -1,0 +1,12 @@
+
+.checkbox{
+    display: inline-flex;
+    gap:14px;
+    padding:16px
+}
+
+.check{
+    display: inline-flex;
+    gap:8px;
+    color:rgb(0, 28, 41);
+}

@@ -1,25 +1,34 @@
-import logo from './logo.svg';
+
+import { useEffect, useState } from 'react';
 import './App.css';
+import AppRouter from './components/AppRouter';
+import { AuthContext } from './context/authContext';
+import Modal from './UI/modal/Modal';
+import { ModalContext } from './context/modalContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    
+  let [isAuth, setIsAuth] = useState(false)
+
+  let [show, setShow] = useState(false)
+
+  let [children, setChildren] = useState()
+
+  useEffect(()=>{
+    if(localStorage.getItem("user")){
+      setIsAuth(true)
+    }
+  }, [isAuth])
+  
+
+  return(
+    <AuthContext.Provider value={{isAuth, setIsAuth}}>
+      <ModalContext.Provider value={{show, setShow, children, setChildren}}>
+        <Modal show={show} setShow={setShow}>{children}</Modal>
+            <AppRouter />
+      </ModalContext.Provider>
+    </AuthContext.Provider>
+  )
 }
 
 export default App;
