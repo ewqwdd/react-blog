@@ -1,6 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
+import { getUser } from "../api/getUser";
+import Loader from "../UI/Loader/Loader";
+import avatar from "../images/avatar.png"
 
 const FullPagePost = ({post})=>{
+
+    let [author, setAuthor] = useState({})
+
+    let [fetching, isLoading, isError] = useFetch(async()=>{
+        let data = await getUser(post.id);
+        if(!isError && data.ok){
+            let parsed = await data.json()
+            setAuthor(parsed)
+        }
+    }  
+    )
+
+    useEffect(()=>{
+        fetching()
+    }, [])
 
 
     return(
@@ -17,6 +36,13 @@ const FullPagePost = ({post})=>{
             <p>
                 {post.body}
             </p>
+            {isLoading ? <Loader /> :
+            <div style={{display:"inline-block"}}> 
+            <div className="author">
+                    <img src={author.image ? author.image : avatar} />
+                    <span>{author.username}</span>
+                </div>
+                </div>}
         </div>
     )
 }

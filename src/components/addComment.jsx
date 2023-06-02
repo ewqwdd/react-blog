@@ -53,7 +53,7 @@ const AddComment = ({comments, setComments, postId})=>{
             <div className="comment-post">
                 <div  className="comment-form">
                     <img className="comment-avatar" src={user.image ? user.image : avatar} />
-                    <textarea cols="60" rows="6" maxLength="360" value={textVal} onChange={e=>setTextVal(e.target.value)}/>
+                    <textarea cols="" rows="6" maxLength="360" value={textVal} onChange={e=>setTextVal(e.target.value)}/>
                 </div>
                 {isAuth ? null :<span className="red-text">Log in to publish comments</span>}
                 <LightButton onClick={publish} disabled={!isAuth}>Submit</LightButton>

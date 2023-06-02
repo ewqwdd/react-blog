@@ -5,6 +5,7 @@ import AppRouter from './components/AppRouter';
 import { AuthContext } from './context/authContext';
 import Modal from './UI/modal/Modal';
 import { ModalContext } from './context/modalContext';
+import Nav from './components/nav';
 
 function App() {
     

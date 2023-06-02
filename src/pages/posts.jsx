@@ -6,7 +6,7 @@ import CheckBox from "../UI/checkbox/checkbox";
 import Loader from "../UI/Loader/Loader";
 import Select from "../components/select";
 import { Pagination } from "../hooks/usePagination";
-
+import { getUsers } from "../api/getUsers";
 
 const PostsPage = ()=>{
     
@@ -24,12 +24,14 @@ const PostsPage = ()=>{
 
     let [tagsValue, setTagsValue] = useState([])
 
+    let [users, setUsers] = useState([])
+
     let bottom = useRef()
 
     let [fetchPosts, isLoading, isError] = useFetch(
         async(lim)=>{
             let data = await getPosts(limit=lim)
-            if(!isError){
+            if(!isError && data.ok){
                 let parsed = await data.json()
                 setPosts(parsed.posts);
                 setTotalPosts(parsed.total)
@@ -40,7 +42,18 @@ const PostsPage = ()=>{
     
     useEffect(()=>{fetchPosts(limit)},[limit])
     
-    
+    let [usersFetching, isUsersLoading, isUsersError] = useFetch(async()=>{
+        let data = await getUsers()
+        if(!isUsersError && data.ok){
+            let parsed = await data.json()
+            
+            setUsers(parsed.users)
+        }
+    })
+
+    useEffect(()=>{
+        usersFetching()
+    }, [])
 
     Pagination(limit, setLimit, isLoading, totalPosts, bottom, 30)
 
@@ -81,8 +94,8 @@ const PostsPage = ()=>{
         <div className="content-wrap">
         <CheckBox checks={tags} callback={addCheckboxValue}/>
         <Select onChange={(event)=>{setSelectValue(event.target.value)}} sortBy={sortBy} />
-            <PostsList posts={sortedAndFiltered} />
-            {isLoading ? <Loader />:null}
+            {isUsersLoading ? null : <PostsList users={users} posts={sortedAndFiltered} />}
+            {isLoading || isUsersLoading ? <Loader />:null}
             {isLoading ? null:<div ref={bottom} style={{height:"80px", display:"block"}} />}
         </div>
     )

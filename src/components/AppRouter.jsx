@@ -5,10 +5,12 @@ import Page404 from "../pages/404";
 import Login from "../pages/login";
 import PostPage from "../pages/PostPage"
 import Main from "../pages/main";
+import Nav from "./nav";
 
 const AppRouter = ()=>{
     return(
             <BrowserRouter>
+                <Nav />
                 <Routes>
                     <Route path="/posts/:id" Component={PostPage}/>
                     <Route path="/posts" Component={PostsPage}/>

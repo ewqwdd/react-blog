@@ -112,10 +112,31 @@ h4{
   background: whitesmoke;
 }
 
-.post .blue-text{
-  justify-self:end;
+.author{
+  display: inline-flex;
+  align-items: center;
+  gap:6px;
+  border-radius: 12px;
+  padding:4px 8px;
+  background: var(--primary200);
 }
 
+.post-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.author img{
+  max-width:24px;
+}
+
+.fullPage-post .author img{
+  max-width:42px;
+}
+.fullPage-post .author span{
+  font-size:1.2em;
+}
 
 /*------------404-------------*/
 
@@ -182,8 +203,9 @@ h4{
 }
 .comment-post{
   gap:12px;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
+  max-width:50%;
 }
 
 .comment-post .red-text{
@@ -197,6 +219,7 @@ h4{
 .comment-form{
   display: flex;
   flex-direction: row;
+  
 }
 
 
@@ -214,18 +237,24 @@ h4{
   margin:2px 24px;
 }
 
+.addcom textarea{
+  width:100%;
+  
+}
+
 /*-------------------MAIN PAGE ----------------*/
 
 
 .picture-text{
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  padding:32px 0;
+  justify-content: space-around;
+  gap:12px;
+  padding:32px 12px;
 }
 
 .picture-text img{
-  max-height:500px;
+  max-height:400px;
 }
 
 .main{
@@ -234,4 +263,51 @@ h4{
   flex-direction: column;
   align-items: center;
   gap:10px;
+  font-size:1.5em !important;
+}
+
+.picture-text .text-block{
+  align-self: center;
+}
+
+.main-title{
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.reverse{
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
+/*----------nav-------*/
+
+.nav{
+  background: var(--grey);
+}
+
+.nav-bar{
+  display:flex;
+  justify-content: space-between;
+}
+
+.nav-buttons, .nav-links{
+  display: flex;
+  gap:12px;
+  align-items: center;
+}
+
+.nav a{
+  text-decoration: none;
+  color:whitesmoke;
+}
+
+.nav-elem{
+  padding:12px;
+}
+
+.nav-elem:active{
+  background: #3a4251;
 }
